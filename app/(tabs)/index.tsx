@@ -15,9 +15,11 @@ export default function HomeScreen() {
       <View style={styles.middleContainer}>
         <ImporterVideo />
         <MesVideos />
-        <Enregistrement />
       </View>
 
+        <View style={styles.bottomContainer}>
+            <Enregistrement />
+        </View>
     </View>
   );
 }
@@ -25,14 +27,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 80,
+    backgroundColor: "#f8f9fb",
+    paddingTop: 80,
   },
-  
+
   topBar: {
     width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
     paddingHorizontal: 20,
+    marginBottom: 40,
   },
 
   middleContainer: {
@@ -40,5 +43,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 20,
+  },
+
+  bottomContainer: {
+    alignItems: 'center',
+    marginBottom: 60,
   },
 });

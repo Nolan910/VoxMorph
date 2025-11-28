@@ -9,21 +9,29 @@ export default function HomeButton() {
   };
 
   return (
-    <Pressable onPress={handlePress} style={styles.container}>
+    <Pressable onPress={handlePress} style={styles.button}>
       <Text style={styles.text}>Home</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: 100,
-    height: 50,
-    backgroundColor: '#000000ff',
-    justifyContent: 'center',
-    alignItems: 'center',
+  button: {
+    width: 120,
+    paddingVertical: 12,
+    backgroundColor: "#111",
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 4,
   },
+
   text: {
-    color: 'white',
-  },
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
+  }
 });
