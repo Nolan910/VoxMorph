@@ -1,12 +1,13 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable, Text } from 'react-native';
+import { Link } from "expo-router";
+
 import Modificateur from '../../components/modificateurButton';
 import ImporterVideo from '../../components/importerVideoButton';
 import MesVideos from '../../components/mesVideosButton';
-import Enregistrement from '../../components/enregistrementButton';
 
 export default function HomeScreen() {
   return (
-   <View style={styles.container}>
+    <View style={styles.container}>
 
       <View style={styles.topBar}>
         <Modificateur />
@@ -17,9 +18,14 @@ export default function HomeScreen() {
         <MesVideos />
       </View>
 
-        <View style={styles.bottomContainer}>
-            <Enregistrement />
-        </View>
+      <View style={styles.bottomContainer}>
+        <Link href="/enregistrer-video" asChild>
+          <Pressable style={styles.recordButton}>
+            <Text style={styles.recordText}>Enregistrer</Text>
+          </Pressable>
+        </Link>
+      </View>
+
     </View>
   );
 }
@@ -48,5 +54,18 @@ const styles = StyleSheet.create({
   bottomContainer: {
     alignItems: 'center',
     marginBottom: 60,
+  },
+
+  recordButton: {
+    backgroundColor: "#111",
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderRadius: 50,
+  },
+
+  recordText: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 18,
   },
 });

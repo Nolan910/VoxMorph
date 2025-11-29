@@ -1,37 +1,47 @@
-import { Text, StyleSheet, Pressable, NativeModules } from 'react-native';
-import { useRouter } from 'expo-router';
-import { useState } from "react"
-
-const { VideoRecorder } = NativeModules;
+import { Text, StyleSheet, Pressable } from "react-native";
+import { Camera } from "expo-camera";
+import { useRouter } from "expo-router";
+import { useState, useRef } from "react";
+import { View } from "react-native";
 
 export default function Enregistrement() {
-
+  const [permission, requestPermission] = Camera.useCameraPermissions();
   const [recording, setRecording] = useState(false);
+  const cameraRef = useRef(null);
   const router = useRouter();
 
+  if (!permission) {
+    return <View />;
+  }
+
+  if (!permission.granted) {
+    return (
+      <Pressable style={styles.circle} onPress={requestPermission}>
+        <Text style={styles.text}>Autoriser caméra</Text>
+      </Pressable>
+    );
+  }
+
   const handlePress = async () => {
-    console.log("NativeModules:", NativeModules);
-
     if (!recording) {
-      await VideoRecorder.startRecording();
       setRecording(true);
+      const video = await cameraRef.current.recordAsync();
     } else {
-      const uri = await VideoRecorder.stopRecording();
+      cameraRef.current.stopRecording();
       setRecording(false);
-
-      router.push({
-          pathname: "/preview-video",
-          params: { uri }
-        });
-     }
+    }
   };
 
   return (
-        <Pressable onPress={handlePress} style={styles.circle}>
+    <View style={{ flex: 1 }}>
+      <Camera ref={cameraRef} style={{ flex: 1 }} />
+
+      <Pressable onPress={handlePress} style={styles.circle}>
         <Text style={styles.text}>
-           {recording ? "Stop" : "Enregistrement"}
+          {recording ? "Stop" : "Enregistrement"}
         </Text>
-        </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
@@ -41,12 +51,8 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 45,
     backgroundColor: "#111",
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: "#000",
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     color: "white",

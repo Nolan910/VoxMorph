@@ -1,11 +1,18 @@
 import { View, StyleSheet } from 'react-native';
+import { Video } from "expo-av";
+import { useLocalSearchParams } from "expo-router";
+import { useRef } from "react";
+
 import Modificateur from '../../components/modificateurButton';
 import HomeButton from '../../components/homeButton';
 import VideoViewer from '../../components/videoViewer';
 import Partager from '../../components/partagerButton';
 import Sauvegarder from '../../components/sauvegarderButton';
 
-export default function ModifierAudio() {
+export default function PreviewVideo() {
+  const { uri } = useLocalSearchParams();
+  const videoRef = useRef(null);
+
   return (
     <View style={styles.container}>
       
@@ -14,7 +21,14 @@ export default function ModifierAudio() {
         <Modificateur />
       </View>
 
-       <VideoViewer />
+        <Video
+           ref={videoRef}
+           style={styles.video}
+           source={{ uri }}
+           useNativeControls
+           resizeMode="contain"
+           shouldPlay
+         />
 
       <View style={styles.bottomButtons}>
         <Partager />
@@ -39,6 +53,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     marginBottom: 20,
+  },
+
+  video: {
+    width: '100%',
+    height: '70%',
+    backgroundColor: "black",
   },
 
   bottomButtons: {

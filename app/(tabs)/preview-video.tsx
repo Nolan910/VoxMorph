@@ -1,11 +1,12 @@
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Video } from "expo-av";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useRef } from "react";
 
 export default function PreviewVideo() {
   const { uri } = useLocalSearchParams();
   const videoRef = useRef(null);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -18,35 +19,26 @@ export default function PreviewVideo() {
         shouldPlay
       />
 
-      <Pressable style={styles.cancelButton} onPress={() => router.push("/")}>
-         <Text style={styles.cancelText}>Annuler</Text>
-       </Pressable>
-
+      <Pressable
+        style={styles.cancelButton}
+        onPress={() => router.push("/")}
+      >
+        <Text style={styles.cancelText}>Retour</Text>
+      </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "black",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  video: {
-    width: "100%",
-    height: "80%",
-  },
+  container: { flex: 1, backgroundColor: "black", justifyContent: "center" },
+  video: { width: "100%", height: "80%" },
   cancelButton: {
     marginTop: 20,
+    alignSelf: "center",
+    backgroundColor: "#ff4444",
     paddingVertical: 12,
     paddingHorizontal: 30,
-    backgroundColor: "#ff4444",
     borderRadius: 10,
   },
-  cancelText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "600",
-  },
+  cancelText: { color: "white", fontSize: 16 },
 });
