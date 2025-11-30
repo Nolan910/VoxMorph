@@ -1,10 +1,10 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Video } from "expo-av";
 import { useLocalSearchParams } from "expo-router";
 import { useRef } from "react";
 
 import Modificateur from '../../components/modificateurButton';
-import HomeButton from '../../components/homeButton';
+import RetourButton from '../../components/retourButton';
 import Partager from '../../components/partagerButton';
 import Sauvegarder from '../../components/sauvegarderButton';
 
@@ -17,8 +17,12 @@ export default function ModifierAudio() {
 
 
       <View style={styles.topBar}>
-        <HomeButton />
+        <RetourButton />
         <Modificateur />
+      </View>
+
+      <View style={styles.statusBar}>
+        <Text style={styles.statusText}>Modificateur actif :</Text>
       </View>
 
       <View style={styles.videoZone}>
@@ -56,7 +60,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: "white",
+  },
+
+  statusBar: {
+    width: "100%",
+    alignItems: "flex-start",
+    marginTop: 10,
+    paddingHorizontal: 20,
+  },
+
+  statusText: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#4A90E2",
   },
 
   videoZone: {
@@ -64,6 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
+    marginTop : 20,
   },
 
   videoWrapper: {

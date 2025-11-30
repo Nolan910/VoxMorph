@@ -13,6 +13,10 @@ export default function HomeScreen() {
         <Modificateur />
       </View>
 
+      <View style={styles.title}>
+      <Text style={styles.title}>VoxMorph</Text>
+      </View>
+
       <View style={styles.middleContainer}>
         <ImporterVideo />
         <MesVideos />
@@ -37,6 +41,14 @@ const styles = StyleSheet.create({
     paddingTop: 80,
   },
 
+  title: {
+      fontSize: 40,
+      fontWeight: "900",
+      color: "#4A90E2",
+      alignItems: "center",
+      marginTop: 40,
+  },
+
   topBar: {
     width: '100%',
     alignItems: 'flex-end',
@@ -57,7 +69,7 @@ const styles = StyleSheet.create({
   },
 
   recordButton: {
-    backgroundColor: "#111",
+    backgroundColor: "red",
     paddingVertical: 20,
     paddingHorizontal: 40,
     borderRadius: 50,

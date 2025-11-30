@@ -23,8 +23,6 @@ const styles = StyleSheet.create({
       borderRadius: 12,
       alignItems: "center",
       justifyContent: "center",
-
-      // légère ombre moderne
       shadowColor: "#000",
       shadowOpacity: 0.15,
       shadowRadius: 6,

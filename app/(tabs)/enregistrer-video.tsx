@@ -3,6 +3,8 @@ import { Camera, CameraView } from "expo-camera";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "expo-router";
 
+import RetourButton from "../../components/retourButton";
+
 export default function EnregistrerVideo() {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [recording, setRecording] = useState(false);
@@ -55,6 +57,11 @@ export default function EnregistrerVideo() {
 
   return (
     <View style={styles.container}>
+
+      <View style={styles.topBar}>
+        <RetourButton />
+      </View>
+
       <CameraView
         ref={cameraRef}
         style={styles.camera}
@@ -74,14 +81,20 @@ export default function EnregistrerVideo() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   camera: { flex: 1, width: "100%" },
-
+  topBar: {
+    paddingTop: 40,
+    position: "absolute",
+    top: 40,
+    left: 20,
+    zIndex: 10,
+  },
   recordButton: {
     position: "absolute",
     bottom: 50,
     alignSelf: "center",
     paddingHorizontal: 30,
     paddingVertical: 20,
-    backgroundColor: "#111",
+    backgroundColor: "red",
     borderRadius: 50,
   },
   recordText: {
