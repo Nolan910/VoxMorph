@@ -13,7 +13,7 @@ export default function BackButton() {
 
 const styles = StyleSheet.create({
   button: {
-      width: 220,
+      width: 120,
       paddingVertical: 14,
       backgroundColor: "#111",
       borderRadius: 12,

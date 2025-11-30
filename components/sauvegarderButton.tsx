@@ -83,7 +83,7 @@ export default function Sauvegarder({ uri }) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 220,
+    width: 200,
     paddingVertical: 14,
     backgroundColor: "#111",
     borderRadius: 12,

@@ -10,7 +10,7 @@ export default function Partager() {
 
 const styles = StyleSheet.create({
   button: {
-      width: 220,
+      width: 140,
       paddingVertical: 14,
       backgroundColor: "#111",
       borderRadius: 12,
