@@ -10,8 +10,9 @@ Application de modification de voix
 Télécharger l'application à partir du QR code
 
 `npm run start`
-Scanner le QR code pour avoir accès à l'app
+Scanner le QR code sur Expo Go pour avoir accès à l'app
 
 ### Trello
 Lien vers le trello : https://trello.com/b/V8c1g60F/voxmorph
+
 
