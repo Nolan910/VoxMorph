@@ -52,10 +52,9 @@ export default function Sauvegarder({ uri }) {
       setLoading(true);
 
       const uploadResult = await uploadVideoToBackend(uri);
-        Alert.alert("Réponse serveur", JSON.stringify(uploadResult));
       await saveVideoInfo(uploadResult);
 
-      Alert.alert("Vidéo sauvegardée !", [
+      Alert.alert("Succès", "Vidéo sauvegardée !", [
       {
         text: "OK",
         onPress: () => router.push("/"),
