@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, Pressable, ActivityIndicator, Alert } from 'react-native';
 import { useState } from 'react';
+import { useRouter } from "expo-router";
 
 export default function Sauvegarder({ uri }) {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
  const uploadVideoToBackend = async (localUri) => {
      const formData = new FormData();
@@ -53,7 +55,12 @@ export default function Sauvegarder({ uri }) {
         Alert.alert("Réponse serveur", JSON.stringify(uploadResult));
       await saveVideoInfo(uploadResult);
 
-      Alert.alert("Succès", "Vidéo sauvegardée !");
+      Alert.alert("Vidéo sauvegardée !", [
+      {
+        text: "OK",
+        onPress: () => router.push("/"),
+      },
+    ]);
     } catch (err) {
       Alert.alert(
         "Erreur lors de la sauvegarde",
