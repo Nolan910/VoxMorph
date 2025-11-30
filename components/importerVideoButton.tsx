@@ -1,8 +1,40 @@
-import { Pressable, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, StyleSheet, Alert } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
 
 export default function ImporterVideo() {
+  const router = useRouter();
+
+  const pickVideo = async () => {
+    try {
+
+      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (!permission.granted) {
+        return Alert.alert("Permission refusée", "Autorisez l'accès à la galerie.");
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+        allowsEditing: false,
+        quality: 1,
+      });
+
+      if (result.canceled) return;
+
+      const uri = result.assets[0].uri;
+
+      router.push({
+        pathname: "/modifier-audio",
+        params: { uri }
+      });
+
+    } catch (err) {
+      Alert.alert("Erreur", err.message);
+    }
+  };
+
   return (
-    <Pressable style={styles.button}>
+    <Pressable style={styles.button} onPress={pickVideo}>
       <Text style={styles.text}>Importer une vidéo</Text>
     </Pressable>
   );
@@ -21,7 +53,6 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4,
   },
-
   text: {
     color: 'white',
     fontSize: 16,
