@@ -5,34 +5,38 @@ import { useRef } from "react";
 
 import Modificateur from '../../components/modificateurButton';
 import HomeButton from '../../components/homeButton';
-import VideoViewer from '../../components/videoViewer';
 import Partager from '../../components/partagerButton';
 import Sauvegarder from '../../components/sauvegarderButton';
 
-export default function PreviewVideo() {
+export default function ModifierAudio() {
   const { uri } = useLocalSearchParams();
   const videoRef = useRef(null);
 
   return (
     <View style={styles.container}>
-      
+
+
       <View style={styles.topBar}>
         <HomeButton />
         <Modificateur />
       </View>
 
-        <Video
-           ref={videoRef}
-           style={styles.video}
-           source={{ uri }}
-           useNativeControls
-           resizeMode="contain"
-           shouldPlay
-         />
+      <View style={styles.videoZone}>
+        <View style={styles.videoWrapper}>
+          <Video
+            ref={videoRef}
+            style={styles.video}
+            source={{ uri }}
+            resizeMode="contain"
+            useNativeControls
+            shouldPlay
+          />
+        </View>
+      </View>
 
       <View style={styles.bottomButtons}>
         <Partager />
-        <Sauvegarder />
+        <Sauvegarder uri={uri}/>
       </View>
 
     </View>
@@ -42,30 +46,49 @@ export default function PreviewVideo() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
-    marginTop: 40,
-    alignItems: 'center',
+    paddingTop: 80,
+    backgroundColor: "white",
   },
 
   topBar: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    height: 90,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    backgroundColor: "white"
+  },
+
+  videoZone: {
+    height: "60%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+
+  videoWrapper: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   video: {
-    width: '100%',
-    height: '70%',
-    backgroundColor: "black",
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
 
   bottomButtons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 120,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    paddingBottom: 20,
     gap: 20,
-    marginTop: 20,
   },
 });
+

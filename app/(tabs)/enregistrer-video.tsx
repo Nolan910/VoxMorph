@@ -43,7 +43,7 @@ export default function EnregistrerVideo() {
       const video = await cameraRef.current.recordAsync();
 
       router.push({
-        pathname: "/preview-video",
+        pathname: "/modifier-audio",
         params: { uri: video.uri },
       });
 
